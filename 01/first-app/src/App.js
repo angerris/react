@@ -13,6 +13,7 @@ import Friends from "./components/Friends/Friends";
 export default function App(props) {
   let state = props.state;
   let newPostText = state.profilePage.newPostText;
+  let newMessageText = state.messagesPage.newMessageText;
   let dialogsData = state.messagesPage.dialogsData;
   let friendsData = state.messagesPage.dialogsData;
   let postsData = state.profilePage.postsData;
@@ -39,7 +40,12 @@ export default function App(props) {
             <Route
               path="/dialogs"
               element={
-                <Dialogs dialogsData={dialogsData} messageData={messageData} />
+                <Dialogs
+                  dispatch={dispatch}
+                  dialogsData={dialogsData}
+                  messageData={messageData}
+                  newMessageText={newMessageText}
+                />
               }
             />
             <Route path="/feed" element={<Feed />} />

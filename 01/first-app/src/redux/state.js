@@ -12,6 +12,7 @@ let store = {
       ],
     },
     messagesPage: {
+      newMessageText: "",
       dialogsData: [
         { id: 1, name: "anton" },
         { id: 2, name: "valera" },
@@ -47,10 +48,17 @@ let store = {
     } else if (action.type === UPDATE_POST_CHANGE) {
       this._state.profilePage.newPostText = action.newText;
       this._rerenderEntireTree(this._state);
-    } else if (action.type === "UPDATE-MESSAGE-CHANGE") {
-      console.log("updated");
-    } else if (action.type === "SEND-MESSAGE") {
-      console.log("sent");
+    } else if (action.type === UPDATE_MESSAGE_CHANGE) {
+      this._state.messagesPage.newMessageText = action.newMsg;
+      this._rerenderEntireTree(this._state);
+    } else if (action.type === SEND_MESSAGE) {
+      let newMessage = {
+        id: 4,
+        message: this._state.messagesPage.newMessageText,
+      };
+      this._state.messagesPage.messageData.push(newMessage);
+      this._state.messagesPage.newMessageText = "";
+      this._rerenderEntireTree(this._state);
     }
   },
 };
@@ -58,6 +66,11 @@ export let addPostActionCreator = () => ({ type: ADD_POST });
 export let onPostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,
   newText: text,
+});
+export let sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
+export let updateMessageActionCreator = (text) => ({
+  type: UPDATE_MESSAGE_CHANGE,
+  newMsg: text,
 }); //return unnecessary
 export default store;
 window.store = store;
