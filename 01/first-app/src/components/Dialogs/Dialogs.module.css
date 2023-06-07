@@ -1,9 +1,28 @@
 .wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 600px;
 }
-.messages {
+.dialogWrapper {
+  flex-direction: column;
+  display: flex;
+  width: 250px;
+  padding: 20px;
+  background-color: #5d7736;
+}
+.msgWrapper {
   display: flex;
   flex-direction: column;
-  padding-left: 200px;
+  width: 100%;
+  flex-grow: 1;
+  padding: 100px;
+  border: #5d7736 solid 6px;
+}
+
+.text {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-end;
+  align-self: center;
+  margin-top: 50px;
 }

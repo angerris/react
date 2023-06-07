@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import x from "./Navbar.module.css";
-export default function Navbar() {
+export default function Navbar(props) {
+  let friend = props.friendsData.map((f) => <div>{f.name}</div>);
   return (
     <nav className={x.nav}>
       <ul>
@@ -20,6 +21,13 @@ export default function Navbar() {
           <NavLink to="/settings">settings</NavLink>
         </li>
       </ul>
+      <div>
+        <NavLink to="/friends">
+          <br />
+          friends:
+        </NavLink>
+        <div className={x.friend}>{friend}</div>
+      </div>
     </nav>
   );
 }

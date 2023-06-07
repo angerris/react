@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&family=Source+Code+Pro&display=swap");
 body {
-  background-color: darkslategrey;
+  background-color: #c1d5a4;
+  font-family: "Source Code Pro", monospace;
 }
-
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -53,5 +54,5 @@ a:visited {
 
 a:hover,
 a:active {
-  color: green;
+  color: #f0f2b6;
 }

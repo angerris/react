@@ -1,42 +1,43 @@
+import { DialogItem } from "./DialogItem/DialogItem";
 import x from "./Dialogs.module.css";
-import { NavLink } from "react-router-dom";
+import { Messages } from "./Message/Message";
+import React, { useRef } from "react";
 
-export function DialogItem(props) {
-  let path = `/dialogs/` + props.id;
-  return (
-    <div className={x.dialogs}>
-      <div className={x.dialog}>
-        <NavLink to={path}>{props.name}</NavLink>
-      </div>
-    </div>
-  );
-}
-export function Messages(props) {
-  return (
-    <div className={x.messages}>
-      <div className={x.message}>{props.message}</div>
-    </div>
-  );
-}
 export default function Dialogs(props) {
-  let dialogsData = [
-    { id: 1, name: "anton" },
-    { id: 2, name: "valera" },
-    { id: 3, name: "sasha" },
-  ];
-  let messageData = [
-    { id: 1, message: "wassup" },
-    { id: 2, message: "yo" },
-    { id: 3, message: "hows your day" },
-  ];
+  //props
+  let dialogsData = props.dialogsData;
+  let messageData = props.messageData;
+  //friends in dialogs
+  let dialogElement = dialogsData.map((d) => (
+    <DialogItem name={d.name} id={d.id} />
+  ));
+  //generate new message
+  let messageElement = messageData.map((m) => <Messages message={m.message} />);
+  //ref
+  let msgText = useRef(null);
+  //functions
+  let sendMessage = () => {
+    alert("message sent");
+  };
+  let onMessageChange = () => {
+    let text = msgText.current.value;
+    console.log(text);
+  };
   return (
     <div className={x.wrapper}>
-      <DialogItem name={dialogsData[0].name} id={dialogsData[0].id} />
-      <DialogItem name={dialogsData[1].name} id={dialogsData[1].id} />
-      <DialogItem name={dialogsData[2].name} id={dialogsData[2].id} />
-      <Messages message={messageData[0].message} />
-      <Messages message={messageData[1].message} />
-      <Messages message={messageData[2].message} />
+      <div className={x.dialogWrapper}>{dialogElement}</div>
+      <div className={x.msgWrapper}>
+        {messageElement}
+        <div className={x.text}>
+          <textarea
+            cols="30"
+            rows="2"
+            ref={msgText}
+            onChange={onMessageChange}
+          ></textarea>
+          <button onClick={sendMessage}>send!</button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,11 @@
 .nav {
-  background-color: darkgoldenrod;
+  background-color: #224b0c;
   width: 200px;
   height: 600px;
   color: white;
   padding: 20px;
+}
+
+.friend {
+  border: 1px solid white;
 }
