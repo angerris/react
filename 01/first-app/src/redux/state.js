@@ -1,3 +1,7 @@
+import messageReducer from "./messagesReducer";
+import profileReducer from "./profileReducer";
+import sidebarReducer from "./sidebarReducer";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 const SEND_MESSAGE = "SEND-MESSAGE";
@@ -24,6 +28,7 @@ let store = {
         { id: 3, message: "hows your day" },
       ],
     },
+    sidebar: {},
   },
   _rerenderEntireTree() {
     console.log("subscriber called");
@@ -36,30 +41,10 @@ let store = {
     return this._state;
   },
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 3,
-        message: this._state.profilePage.newPostText,
-        likeCount: 0,
-      };
-      this._state.profilePage.postsData.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._rerenderEntireTree(this._state);
-    } else if (action.type === UPDATE_POST_CHANGE) {
-      this._state.profilePage.newPostText = action.newText;
-      this._rerenderEntireTree(this._state);
-    } else if (action.type === UPDATE_MESSAGE_CHANGE) {
-      this._state.messagesPage.newMessageText = action.newMsg;
-      this._rerenderEntireTree(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-      let newMessage = {
-        id: 4,
-        message: this._state.messagesPage.newMessageText,
-      };
-      this._state.messagesPage.messageData.push(newMessage);
-      this._state.messagesPage.newMessageText = "";
-      this._rerenderEntireTree(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagesPage = messageReducer(this._state.messagesPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+    this._rerenderEntireTree(this._state);
   },
 };
 export let addPostActionCreator = () => ({ type: ADD_POST });
