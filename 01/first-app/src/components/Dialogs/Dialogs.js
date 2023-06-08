@@ -5,7 +5,6 @@ import {
 import { DialogItem } from "./DialogItem/DialogItem";
 import x from "./Dialogs.module.css";
 import { Messages } from "./Message/Message";
-import React, { useRef } from "react";
 
 export default function Dialogs(props) {
   //props
@@ -20,14 +19,13 @@ export default function Dialogs(props) {
   ));
   //generate new message
   let messageElement = messageData.map((m) => <Messages message={m.message} />);
-  //ref
-  let msgText = useRef(null);
+
   //functions
   let sendMessage = () => {
     dispatch(sendMessageActionCreator());
   };
-  let onMessageChange = () => {
-    let text = msgText.current.value;
+  let onMessageChange = (e) => {
+    let text = e.target.value;
     dispatch(updateMessageActionCreator(text));
   };
   return (
@@ -39,7 +37,6 @@ export default function Dialogs(props) {
           <textarea
             cols="30"
             rows="2"
-            ref={msgText}
             onChange={onMessageChange}
             value={newMessageText}
           ></textarea>

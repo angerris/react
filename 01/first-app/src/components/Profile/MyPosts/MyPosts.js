@@ -1,5 +1,4 @@
 import x from "./MyPosts.module.css";
-import React, { useRef } from "react";
 import Post from "./Post/Post";
 import {
   addPostActionCreator,
@@ -14,22 +13,20 @@ export default function MyPosts(props) {
   let postElements = postsData.map((p) => (
     <Post message={p.message} likeCount={p.likeCount} />
   ));
-  //ref
-  let textElement = useRef(null);
 
   //functions
   let addPost = () => {
     dispatch(addPostActionCreator());
   };
-  let onPostChange = () => {
-    let text = textElement.current.value;
+  let onPostChange = (e) => {
+    let text = e.target.value;
     dispatch(onPostChangeActionCreator(text));
   };
   return (
     <div className={x.MyPosts}>
       <div>my posts</div>
       <div>new post</div>
-      <textarea ref={textElement} onChange={onPostChange} value={newPostText} />
+      <textarea onChange={onPostChange} value={newPostText} />
       <button onClick={addPost}>add post</button>
       <div className={x.posts}>{postElements}</div>
     </div>
