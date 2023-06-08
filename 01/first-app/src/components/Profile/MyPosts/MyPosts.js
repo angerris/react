@@ -1,9 +1,10 @@
-import x from "./MyPosts.module.css";
-import Post from "./Post/Post";
 import {
   addPostActionCreator,
   onPostChangeActionCreator,
-} from "../../../redux/state";
+} from "../../../redux/profileReducer";
+import x from "./MyPosts.module.css";
+import Post from "./Post/Post";
+
 export default function MyPosts(props) {
   //props
   let newPostText = props.newPostText;

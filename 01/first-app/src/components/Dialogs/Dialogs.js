@@ -1,7 +1,7 @@
 import {
   sendMessageActionCreator,
   updateMessageActionCreator,
-} from "../../redux/state";
+} from "../../redux/messagesReducer";
 import { DialogItem } from "./DialogItem/DialogItem";
 import x from "./Dialogs.module.css";
 import { Messages } from "./Message/Message";
