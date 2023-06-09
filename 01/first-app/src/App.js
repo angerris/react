@@ -9,6 +9,7 @@ import Feed from "./components/Feed/Feed";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export default function App(props) {
   let state = props.state;
@@ -40,7 +41,7 @@ export default function App(props) {
             <Route
               path="/dialogs"
               element={
-                <Dialogs
+                <DialogsContainer
                   dispatch={dispatch}
                   dialogsData={dialogsData}
                   messageData={messageData}

@@ -1,32 +1,16 @@
-import {
-  sendMessageActionCreator,
-  updateMessageActionCreator,
-} from "../../redux/messagesReducer";
-import { DialogItem } from "./DialogItem/DialogItem";
 import x from "./Dialogs.module.css";
-import { Messages } from "./Message/Message";
 
 export default function Dialogs(props) {
-  //props
-  let dispatch = props.dispatch;
-  let dialogsData = props.dialogsData;
-  let messageData = props.messageData;
+  let dialogElement = props.dialogElement;
+  let messageElement = props.messageElement;
   let newMessageText = props.newMessageText;
-
-  //friends in dialogs
-  let dialogElement = dialogsData.map((d) => (
-    <DialogItem name={d.name} id={d.id} />
-  ));
-  //generate new message
-  let messageElement = messageData.map((m) => <Messages message={m.message} />);
-
-  //functions
+  //
   let sendMessage = () => {
-    dispatch(sendMessageActionCreator());
+    props.sendMessage();
   };
   let onMessageChange = (e) => {
     let text = e.target.value;
-    dispatch(updateMessageActionCreator(text));
+    props.updateMessageText(text);
   };
   return (
     <div className={x.wrapper}>
@@ -35,8 +19,6 @@ export default function Dialogs(props) {
         {messageElement}
         <div className={x.text}>
           <textarea
-            cols="30"
-            rows="2"
             onChange={onMessageChange}
             value={newMessageText}
           ></textarea>
