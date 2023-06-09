@@ -1,6 +1,14 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
-const profileReducer = (state, action) => {
+let initialState = {
+  newPostText: "",
+  postsData: [
+    { id: 1, message: "hi", likeCount: 0 },
+    { id: 2, message: "wassup", likeCount: 2 },
+  ],
+};
+//adding 'default' state bec its undefined yet
+const profileReducer = (state = initialState, action) => {
   if (action.type === ADD_POST) {
     let newPost = {
       id: 3,

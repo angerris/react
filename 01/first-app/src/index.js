@@ -2,7 +2,7 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import store from "./redux/state";
+import store from "./redux/reduxStore";
 //
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let rerenderEntireTree = (state) => {
@@ -14,4 +14,10 @@ let rerenderEntireTree = (state) => {
 };
 
 rerenderEntireTree(store.getState());
-store.subscribe(rerenderEntireTree);
+//redux store doesnt pass state w/ subscribe
+store.subscribe(() => {
+  //'ask' for the state from store
+  let state = store.getState();
+  //render changes
+  rerenderEntireTree(state);
+});
