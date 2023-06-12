@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import x from "./Navbar.module.css";
 export default function Navbar(props) {
-  let friend = props.friendsData.map((f) => <div>{f.name}</div>);
+  let friendsData = props.state.messagesPage.dialogsData;
+  let friend = friendsData.map((f) => <div>{f.name}</div>);
   return (
     <nav className={x.nav}>
       <ul>

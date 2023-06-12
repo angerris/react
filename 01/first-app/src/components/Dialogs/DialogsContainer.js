@@ -9,10 +9,10 @@ import { Messages } from "./Message/Message";
 export default function DialogsContainer(props) {
   //props
   let dispatch = props.dispatch;
-  let dialogsData = props.dialogsData;
-  let messageData = props.messageData;
-  let newMessageText = props.newMessageText;
-
+  let dialogsData = props.state.messagesPage.dialogsData;
+  let messageData = props.state.messagesPage.messageData;
+  let newMessageText = props.state.messagesPage.newMessageText;
+  debugger;
   //friends in dialogs
   let dialogElement = dialogsData.map((d) => (
     <DialogItem name={d.name} id={d.id} />
