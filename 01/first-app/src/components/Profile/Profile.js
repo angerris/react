@@ -1,17 +1,10 @@
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-export default function Profile(props) {
-  let postsData = props.state.profilePage.postsData;
-  let dispatch = props.dispatch;
-  let newPostText = props.state.profilePage.newPostText;
+export default function Profile() {
   return (
     <div>
       <ProfileInfo />
-      <MyPostsContainer
-        postsData={postsData}
-        dispatch={dispatch}
-        newPostText={newPostText}
-      />
+      <MyPostsContainer />
     </div>
   );
 }

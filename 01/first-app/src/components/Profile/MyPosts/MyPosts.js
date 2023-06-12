@@ -1,7 +1,8 @@
 import x from "./MyPosts.module.css";
+
 export default function MyPosts(props) {
   let newPostText = props.newPostText;
-  let postElements = props.postElements;
+
   let addPost = () => {
     props.addPost();
   };
@@ -15,7 +16,7 @@ export default function MyPosts(props) {
       <div>new post</div>
       <textarea onChange={onPostChange} value={newPostText} />
       <button onClick={addPost}>add post</button>
-      <div className={x.posts}>{postElements}</div>
+      <div className={x.posts}>{props.postElements}</div>
     </div>
   );
 }

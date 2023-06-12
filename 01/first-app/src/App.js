@@ -10,28 +10,20 @@ import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-export default function App(props) {
-  let state = props.state;
-  let dispatch = props.dispatch;
+export default function App() {
   return (
     <BrowserRouter>
       <Header />
       <div className="wrapper">
-        <Navbar state={state} />
+        <Navbar />
         <div className="routes">
           <Routes>
-            <Route
-              path="/profile"
-              element={<Profile dispatch={dispatch} state={state} />}
-            />
-            <Route
-              path="/dialogs"
-              element={<DialogsContainer dispatch={dispatch} state={state} />}
-            />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/dialogs" element={<DialogsContainer />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/friends" element={<Friends state={state} />} />
+            <Route path="/friends" element={<Friends />} />
           </Routes>
         </div>
       </div>
