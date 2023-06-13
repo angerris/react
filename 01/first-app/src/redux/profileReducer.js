@@ -7,7 +7,7 @@ let initialState = {
     { id: 2, message: "wassup", likeCount: 2 },
   ],
 };
-//adding 'default' state bec its undefined yet
+
 const profileReducer = (state = initialState, action) => {
   if (action.type === ADD_POST) {
     let newPost = {
@@ -15,10 +15,15 @@ const profileReducer = (state = initialState, action) => {
       message: state.newPostText,
       likeCount: 0,
     };
-    state.postsData.push(newPost);
-    state.newPostText = "";
+    let stateCopy = { ...state };
+    stateCopy.postsData = [...state.postsData];
+    stateCopy.postsData.push(newPost);
+    stateCopy.newPostText = "";
+    return stateCopy;
   } else if (action.type === UPDATE_POST_CHANGE) {
-    state.newPostText = action.newText;
+    let stateCopy = { ...state, newPostText: action.newText };
+    stateCopy.newPostText = action.newText;
+    return stateCopy;
   }
   return state;
 };

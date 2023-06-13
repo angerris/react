@@ -15,14 +15,18 @@ let initialState = {
 };
 const messageReducer = (state = initialState, action) => {
   if (action.type === UPDATE_MESSAGE_CHANGE) {
-    state.newMessageText = action.newMsg;
+    let stateCopy = { ...state };
+    stateCopy.newMessageText = action.newMsg;
+    return stateCopy;
   } else if (action.type === SEND_MESSAGE) {
+    let stateCopy = { ...state };
     let newMessage = {
       id: 4,
       message: state.newMessageText,
     };
-    state.messageData.push(newMessage);
-    state.newMessageText = "";
+    stateCopy.messageData.push(newMessage);
+    stateCopy.newMessageText = "";
+    return stateCopy;
   }
   return state;
 };
