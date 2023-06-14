@@ -2,44 +2,7 @@ const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
 let initialState = {
-  users: [
-    {
-      id: 1,
-      followed: false,
-      photoURL:
-        "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      fullName: "Dmitry",
-      status: "hello",
-      location: {
-        city: "minsk",
-        country: "belarus",
-      },
-    },
-    {
-      id: 2,
-      followed: true,
-      photoURL:
-        "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      fullName: "Sasha",
-      status: "hello world",
-      location: {
-        city: "moscow",
-        country: "russia",
-      },
-    },
-    {
-      id: 3,
-      followed: false,
-      photoURL:
-        "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      fullName: "Anton",
-      status: "hello!!",
-      location: {
-        city: "kyiv",
-        country: "ukraine",
-      },
-    },
-  ],
+  users: [],
 };
 
 const usersReducer = (state = initialState, action) => {
