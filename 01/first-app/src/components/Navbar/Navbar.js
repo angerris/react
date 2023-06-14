@@ -18,6 +18,9 @@ export default function Navbar(props) {
           <NavLink to="/music">music</NavLink>
         </li>
         <li>
+          <NavLink to="/users">find users</NavLink>
+        </li>
+        <li>
           <NavLink to="/settings">settings</NavLink>
         </li>
       </ul>
