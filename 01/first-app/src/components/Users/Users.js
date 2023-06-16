@@ -1,5 +1,6 @@
 import x from "./Users.module.css";
 import { NavLink } from "react-router-dom";
+import pfp from "./../../assets/profpic.avif";
 export default function Users(props) {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
@@ -29,15 +30,11 @@ export default function Users(props) {
           <div key={u.id}>
             <div>
               <NavLink to={"./../profile/" + u.id}>
-                <img
-                  src={
-                    u.photos.small !== null
-                      ? u.photos.small
-                      : "https://www.shutterstock.com/image-photo/head-shot-portrait-close-smiling-260nw-1714666150.jpg"
-                  }
-                  alt=""
-                  width={100}
-                />
+                {u.photos.small !== null ? (
+                  <img src={u.photos.small} alt="" width={100} />
+                ) : (
+                  <img src={pfp} alt="" width={100} />
+                )}
               </NavLink>
             </div>
             <div>

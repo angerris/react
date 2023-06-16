@@ -1,11 +1,8 @@
 import Preloader from "../../common/preloader/preloader";
+import pfp from "./../../../assets/profpic.avif";
 import x from "./ProfileInfo.module.css";
 
 export default function ProfileInfo(props) {
-  if (!props.profile) {
-    return <Preloader />;
-  }
-
   return (
     <div className={x.description}>
       <img
@@ -15,7 +12,9 @@ export default function ProfileInfo(props) {
       />
 
       <div>
-        ava <p>{props.profile.aboutMe}</p>
+        <img src={pfp} alt="" srcset="" width={100} />
+        <p>{props.profile.fullName}</p>
+        <p>{props.profile.aboutMe}</p>
       </div>
     </div>
   );
