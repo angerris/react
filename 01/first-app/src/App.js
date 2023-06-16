@@ -19,7 +19,7 @@ export default function App() {
         <NavbarContainer />
         <div className="routes">
           <Routes>
-            <Route path="/profile/*" element={<ProfileContainer />} />
+            <Route path="/profile/:profileId?" element={<ProfileContainer />} />
             <Route path="/dialogs" element={<DialogsContainer />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/music" element={<Music />} />

@@ -1,4 +1,3 @@
-import Preloader from "../../common/preloader/preloader";
 import pfp from "./../../../assets/profpic.avif";
 import x from "./ProfileInfo.module.css";
 
