@@ -1,6 +1,8 @@
 const ADD_POST = "ADD-POST";
+const SET_PROFILE = "SET-PROFILE";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 let initialState = {
+  profile: {},
   newPostText: "",
   postsData: [
     { id: 1, message: "hi", likeCount: 0 },
@@ -24,9 +26,12 @@ const profileReducer = (state = initialState, action) => {
     };
   } else if (action.type === UPDATE_POST_CHANGE) {
     return { ...state, newPostText: action.newText };
+  } else if (action.type === SET_PROFILE) {
+    return { ...state, profile: action.profile };
   }
   return state;
 };
+export let setProfile = (profile) => ({ type: SET_PROFILE, profile });
 export let addPostActionCreator = () => ({ type: ADD_POST });
 export let onPostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,

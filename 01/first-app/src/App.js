@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Profile from "./components/Profile/Profile";
 import Feed from "./components/Feed/Feed";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -10,6 +9,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
         <NavbarContainer />
         <div className="routes">
           <Routes>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/*" element={<ProfileContainer />} />
             <Route path="/dialogs" element={<DialogsContainer />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/music" element={<Music />} />

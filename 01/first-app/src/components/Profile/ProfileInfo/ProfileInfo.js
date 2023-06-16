@@ -1,6 +1,11 @@
+import Preloader from "../../common/preloader/preloader";
 import x from "./ProfileInfo.module.css";
 
-export default function ProfileInfo() {
+export default function ProfileInfo(props) {
+  if (!props.profile) {
+    return <Preloader />;
+  }
+
   return (
     <div className={x.description}>
       <img
@@ -8,7 +13,11 @@ export default function ProfileInfo() {
         alt=""
         className={x.img}
       />
-      <div>ava + description</div>
+
+      <div>
+        <p>{props.profile.aboutMe} </p>
+        ava + description
+      </div>
     </div>
   );
 }
