@@ -15,7 +15,7 @@ export default function ProfileInfo(props) {
       />
 
       <div>
-        <p>{props.profile.aboutMe} </p>
+        <img src={props.profile.photos.small} alt="" srcset="" />
         ava + description
       </div>
     </div>
