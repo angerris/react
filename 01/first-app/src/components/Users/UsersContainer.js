@@ -7,6 +7,7 @@ import {
   setTotalUsersCount,
   setUsers,
   unfollow,
+  toggleFollowingProgress,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
@@ -33,19 +34,18 @@ class UsersAPIComponent extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
-          <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            users={this.props.users}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
-            onPageChanged={this.onPageChanged}
-          />
-        )}
+        {this.props.isFetching ? <Preloader /> : null}
+        <Users
+          totalUsersCount={this.props.totalUsersCount}
+          pageSize={this.props.pageSize}
+          currentPage={this.props.currentPage}
+          users={this.props.users}
+          unfollow={this.props.unfollow}
+          follow={this.props.follow}
+          onPageChanged={this.onPageChanged}
+          toggleFollowingProgress={this.props.toggleFollowingProgress}
+          followingInProgress={this.props.followingInProgress}
+        />
       </>
     );
   }
@@ -58,8 +58,10 @@ function mapStateToProps(state) {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   };
 }
+//callbacks from ac
 const usersContainer = connect(mapStateToProps, {
   follow,
   unfollow,
@@ -67,5 +69,6 @@ const usersContainer = connect(mapStateToProps, {
   setCurrentPage,
   setTotalUsersCount,
   setToggleFetching,
+  toggleFollowingProgress,
 })(UsersAPIComponent);
 export default usersContainer;
