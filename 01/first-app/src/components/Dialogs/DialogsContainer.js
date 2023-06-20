@@ -10,6 +10,7 @@ import { Messages } from "./Message/Message";
 let mapStateToProps = (state) => {
   return {
     newMessageText: state.messagesPage.newMessageText,
+    isAuth: state.auth.isAuth,
     dialogElement: state.messagesPage.dialogsData.map((d) => (
       <DialogItem name={d.name} id={d.id} />
     )),

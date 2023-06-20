@@ -2,7 +2,7 @@ import Profile from "./Profile";
 import React from "react";
 import { setProfile, getProfileThunk } from "../../redux/profileReducer";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -18,6 +18,9 @@ class ProfileAPIComponent extends React.Component {
   }
 
   render() {
+    if (this.props.isAuth === false) {
+      return <Navigate to={"/login"} />;
+    }
     return <Profile {...this.props} />;
   }
 }
@@ -25,6 +28,7 @@ class ProfileAPIComponent extends React.Component {
 function mapStateToProps(state) {
   return {
     profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth,
   };
 }
 
