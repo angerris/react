@@ -1,7 +1,7 @@
 import x from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 import pfp from "./../../assets/profpic.avif";
-import { followUsers, unfollowUsers } from "../../api/api";
+
 export default function Users(props) {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
@@ -43,13 +43,7 @@ export default function Users(props) {
                 <button
                   disabled={props.followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
-                    props.toggleFollowingProgress(true, u.id);
-                    unfollowUsers(u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.unfollow(u.id);
-                      }
-                      props.toggleFollowingProgress(false, u.id);
-                    });
+                    props.unfollowThunk(u.id);
                   }}
                 >
                   unfollow
@@ -58,13 +52,7 @@ export default function Users(props) {
                 <button
                   disabled={props.followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
-                    props.toggleFollowingProgress(true, u.id);
-                    followUsers(u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.follow(u.id);
-                      }
-                      props.toggleFollowingProgress(false, u.id);
-                    });
+                    props.followThunk(u.id);
                   }}
                 >
                   follow

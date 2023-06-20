@@ -1,3 +1,5 @@
+import { getProfile } from "../api/api";
+
 const ADD_POST = "ADD-POST";
 const SET_PROFILE = "SET-PROFILE";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
@@ -37,4 +39,15 @@ export let onPostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,
   newText: text,
 });
+//thunk
+export let getProfileThunk = (profileId) => {
+  return (dispatch) => {
+    if (!profileId) {
+      profileId = 2;
+    }
+    getProfile(profileId).then((data) => {
+      dispatch(setProfile(data));
+    });
+  };
+};
 export default profileReducer;

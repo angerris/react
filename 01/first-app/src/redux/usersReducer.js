@@ -1,4 +1,4 @@
-import { getUsers } from "../api/api";
+import { followUsers, getUsers, unfollowUsers } from "../api/api";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -92,6 +92,7 @@ export let toggleFollowingProgress = (isFetching, userID) => ({
   isFetching,
   userID,
 });
+//thunk
 export let getUsersThunk = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setToggleFetching(true));
@@ -103,4 +104,27 @@ export let getUsersThunk = (currentPage, pageSize) => {
     });
   };
 };
+export let followThunk = (userID) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userID));
+    followUsers(userID).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(follow(userID));
+      }
+      dispatch(toggleFollowingProgress(false, userID));
+    });
+  };
+};
+export let unfollowThunk = (userID) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userID));
+    unfollowUsers(userID).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollow(userID));
+      }
+      dispatch(toggleFollowingProgress(false, userID));
+    });
+  };
+};
+
 export default usersReducer;

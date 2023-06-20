@@ -29,3 +29,12 @@ export const getProfile = (profileId) => {
     return res.data;
   });
 };
+export const auth = () => {
+  return instance
+    .get(`auth/me`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      return res.data;
+    });
+};
