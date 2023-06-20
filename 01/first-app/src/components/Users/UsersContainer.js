@@ -8,44 +8,37 @@ import {
   setUsers,
   unfollow,
   toggleFollowingProgress,
+  getUsersThunk,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
-import { getUsers } from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    this.props.setToggleFetching(true);
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.setToggleFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
   }
   onPageChanged = (p) => {
-    this.props.setToggleFetching(true);
-    this.props.setCurrentPage(p);
-    getUsers(p, this.props.pageSize).then((data) => {
-      this.props.setToggleFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsersThunk(p, this.props.pageSize);
   };
 
   render() {
     return (
       <>
-        {this.props.isFetching ? <Preloader /> : null}
-        <Users
-          totalUsersCount={this.props.totalUsersCount}
-          pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
-          users={this.props.users}
-          unfollow={this.props.unfollow}
-          follow={this.props.follow}
-          onPageChanged={this.onPageChanged}
-          toggleFollowingProgress={this.props.toggleFollowingProgress}
-          followingInProgress={this.props.followingInProgress}
-        />
+        {this.props.isFetching ? (
+          <Preloader />
+        ) : (
+          <Users
+            totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            currentPage={this.props.currentPage}
+            users={this.props.users}
+            unfollow={this.props.unfollow}
+            follow={this.props.follow}
+            onPageChanged={this.onPageChanged}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            followingInProgress={this.props.followingInProgress}
+          />
+        )}
       </>
     );
   }
@@ -70,5 +63,6 @@ const usersContainer = connect(mapStateToProps, {
   setTotalUsersCount,
   setToggleFetching,
   toggleFollowingProgress,
+  getUsersThunk,
 })(UsersAPIComponent);
 export default usersContainer;
