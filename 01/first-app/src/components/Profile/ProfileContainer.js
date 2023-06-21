@@ -2,37 +2,26 @@ import Profile from "./Profile";
 import React from "react";
 import { setProfile, getProfileThunk } from "../../redux/profileReducer";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import withRouter from "../common/withRouter";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    let params = useParams();
-    return <Component {...props} router={{ params }} />;
-  }
-
-  return ComponentWithRouterProp;
-}
-class ProfileAPIComponent extends React.Component {
+class ProfileContainer extends React.Component {
   componentDidMount() {
     this.props.getProfileThunk(this.props.router.params.profileId);
   }
-
   render() {
     return <Profile {...this.props} />;
   }
 }
-let authRedirectComponent = withAuthRedirect(ProfileAPIComponent);
-
 function mapStateToProps(state) {
   return {
     profile: state.profilePage.profile,
   };
 }
 
-const ProfileContainer = connect(mapStateToProps, {
-  setProfile,
-  getProfileThunk,
-})(withRouter(authRedirectComponent));
-
-export default ProfileContainer;
+export default compose(
+  connect(mapStateToProps, { getProfileThunk, setProfile }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);

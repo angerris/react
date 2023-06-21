@@ -9,8 +9,9 @@ import {
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
-class UsersAPIComponent extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
   }
@@ -51,13 +52,12 @@ function mapStateToProps(state) {
   };
 }
 
-//callbacks from ac
-const usersContainer = withAuthRedirect(
+export default compose(
+  withAuthRedirect,
   connect(mapStateToProps, {
     setUsers,
     getUsersThunk,
     followThunk,
     unfollowThunk,
-  })(UsersAPIComponent)
-);
-export default usersContainer;
+  })
+)(UsersContainer);
