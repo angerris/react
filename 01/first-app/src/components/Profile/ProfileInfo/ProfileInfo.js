@@ -1,5 +1,6 @@
 import pfp from "./../../../assets/profpic.avif";
 import x from "./ProfileInfo.module.css";
+import ProfileStatus from "./ProfileStatus";
 
 export default function ProfileInfo(props) {
   return (
@@ -12,8 +13,11 @@ export default function ProfileInfo(props) {
 
       <div>
         <img src={pfp} alt="" srcset="" width={100} />
-        <p>{props.profile.fullName}</p>
-        <p>{props.profile.aboutMe}</p>
+        <ProfileStatus
+          fullName={props.profile.fullName}
+          status={"hey guyss"}
+          aboutMe={props.profile.aboutMe}
+        />
       </div>
     </div>
   );
