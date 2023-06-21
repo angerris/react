@@ -1,11 +1,5 @@
 import x from "./Dialogs.module.css";
-import { Navigate } from "react-router-dom";
 export default function Dialogs(props) {
-  let dialogElement = props.dialogElement;
-  let messageElement = props.messageElement;
-  let newMessageText = props.newMessageText;
-  if (props.isAuth === false) return <Navigate to={"/login"} />;
-
   let sendMessage = () => {
     props.sendMessage();
   };
@@ -15,13 +9,13 @@ export default function Dialogs(props) {
   };
   return (
     <div className={x.wrapper}>
-      <div className={x.dialogWrapper}>{dialogElement}</div>
+      <div className={x.dialogWrapper}>{props.dialogElement}</div>
       <div className={x.msgWrapper}>
-        {messageElement}
+        {props.messageElement}
         <div className={x.text}>
           <textarea
             onChange={onMessageChange}
-            value={newMessageText}
+            value={props.newMessageText}
           ></textarea>
           <button onClick={sendMessage}>send!</button>
         </div>

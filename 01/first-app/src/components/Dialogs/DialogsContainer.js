@@ -6,7 +6,8 @@ import {
 import { DialogItem } from "./DialogItem/DialogItem";
 import Dialogs from "./Dialogs";
 import { Messages } from "./Message/Message";
-
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+let authRedirectComponent = withAuthRedirect(Dialogs);
 let mapStateToProps = (state) => {
   return {
     newMessageText: state.messagesPage.newMessageText,
@@ -29,5 +30,8 @@ let mapDispatchToProps = (dispatch) => {
     },
   };
 };
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(authRedirectComponent);
 export default DialogsContainer;
