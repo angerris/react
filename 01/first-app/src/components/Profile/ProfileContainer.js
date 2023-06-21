@@ -27,7 +27,6 @@ let authRedirectComponent = withAuthRedirect(ProfileAPIComponent);
 function mapStateToProps(state) {
   return {
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth,
   };
 }
 

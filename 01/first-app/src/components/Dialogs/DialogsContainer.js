@@ -7,11 +7,11 @@ import { DialogItem } from "./DialogItem/DialogItem";
 import Dialogs from "./Dialogs";
 import { Messages } from "./Message/Message";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+
 let authRedirectComponent = withAuthRedirect(Dialogs);
 let mapStateToProps = (state) => {
   return {
     newMessageText: state.messagesPage.newMessageText,
-    isAuth: state.auth.isAuth,
     dialogElement: state.messagesPage.dialogsData.map((d) => (
       <DialogItem name={d.name} id={d.id} />
     )),
