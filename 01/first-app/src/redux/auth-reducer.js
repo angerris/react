@@ -1,4 +1,4 @@
-import { auth } from "../api/api";
+import { authAPI } from "../api/api";
 
 const SET_USER_DATA = "SET-USER-DATA";
 
@@ -27,7 +27,7 @@ export let setAuthUserData = (id, email, login) => ({
 //thunk
 export let getProfileThunk = () => {
   return (dispatch) => {
-    auth().then((data) => {
+    authAPI.me().then((data) => {
       if (data.resultCode === 0) {
         let { id, email, login } = data.data;
         dispatch(setAuthUserData(id, email, login));

@@ -1,4 +1,4 @@
-import { getProfile } from "../api/api";
+import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const SET_PROFILE = "SET-PROFILE";
@@ -45,7 +45,7 @@ export let getProfileThunk = (profileId) => {
     if (!profileId) {
       profileId = 2;
     }
-    getProfile(profileId).then((data) => {
+    profileAPI.getProfile(profileId).then((data) => {
       dispatch(setProfile(data));
     });
   };
