@@ -1,46 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
+export default function ProfileStatus(props) {
+  const [title, setTitle] = useState(props.status);
+  const [editMode, setEditMode] = useState(false);
+
+  const onEditMode = () => setEditMode(true);
+
+  const offEditMode = () => {
+    props.updateStatus(title);
+    setEditMode(false);
   };
-  activateEditMode = () => {
-    this.setState({ editMode: true });
+
+  useEffect(() => {
+    setTitle(props.status);
+  }, [props.status]);
+
+  const onChangeSetTitle = (e) => {
+    setTitle(e.currentTarget.value);
   };
-  deactivateEditMode = () => {
-    this.setState({ editMode: false });
-  };
-  render() {
-    return (
-      <>
-        <div>
-          <p>{this.props.fullName}</p>
-        </div>
-        <div>
-          {this.state.editMode ? (
-            <input
-              autoFocus={true}
-              type="text"
-              value={this.props.status}
-              onBlur={() => {
-                this.deactivateEditMode();
-              }}
-            />
-          ) : (
-            <p
-              onDoubleClick={() => {
-                this.activateEditMode();
-              }}
-            >
-              {this.props.status}
-            </p>
-          )}
-        </div>
-        <div>
-          <p>{this.props.aboutMe}</p>
-        </div>
-      </>
-    );
-  }
+
+  return (
+    <div>
+      <p>{props.fullName}</p>
+      {editMode ? (
+        <input
+          autoFocus={true}
+          onBlur={offEditMode}
+          onChange={onChangeSetTitle}
+          value={title}
+        />
+      ) : (
+        <span onDoubleClick={onEditMode}>{title || "no status"}</span>
+      )}
+      <p>{props.aboutMe}</p>
+    </div>
+  );
 }
-export default ProfileStatus;
