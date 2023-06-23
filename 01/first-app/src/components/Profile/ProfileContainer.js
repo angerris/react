@@ -15,7 +15,7 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let profileId = this.props.router.params.profileId;
     if (!profileId) {
-      profileId = 2;
+      profileId = 29349;
     }
     this.props.getProfileThunk(profileId);
     this.props.getStatusThunk(profileId);
