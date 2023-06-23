@@ -25,12 +25,22 @@ export const usersAPI = {
       return res.data;
     });
   },
+  getProfile(profileId) {
+    console.warn("obsolete method, use profileAPI object");
+    return profileAPI.getProfile(profileId);
+  },
 };
 export const profileAPI = {
   getProfile(profileId) {
     return instance.get(`profile/${profileId}`).then((res) => {
       return res.data;
     });
+  },
+  getStatus(userID) {
+    return instance.get(`profile/status/${userID}`);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status });
   },
 };
 

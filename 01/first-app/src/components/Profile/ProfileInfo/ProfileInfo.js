@@ -15,7 +15,7 @@ export default function ProfileInfo(props) {
         <img src={pfp} alt="" srcset="" width={100} />
         <ProfileStatus
           fullName={props.profile.fullName}
-          status={"hey guyss"}
+          status={props.status}
           aboutMe={props.profile.aboutMe}
         />
       </div>
