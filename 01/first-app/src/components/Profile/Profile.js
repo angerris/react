@@ -3,7 +3,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 export default function Profile(props) {
   return (
     <div>
-      <ProfileInfo {...props} />
+      <ProfileInfo {...props} updateStatus={props.updateStatus} />
       <MyPostsContainer />
     </div>
   );

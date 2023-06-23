@@ -21,7 +21,7 @@ class ProfileContainer extends React.Component {
     this.props.getStatusThunk(profileId);
   }
   render() {
-    return <Profile {...this.props} />;
+    return <Profile {...this.props} updateStatus={this.updateStatusThunk} />;
   }
 }
 function mapStateToProps(state) {

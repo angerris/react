@@ -57,15 +57,15 @@ export let getProfileThunk = (profileId) => {
 };
 export let getStatusThunk = (userID) => {
   return (dispatch) => {
-    profileAPI.getStatus(userID).then((res) => {
-      dispatch(setStatus(res.data));
+    profileAPI.getStatus(userID).then((data) => {
+      dispatch(setStatus(data));
     });
   };
 };
 export let updateStatusThunk = (status) => {
   return (dispatch) => {
-    profileAPI.updateStatus(status).then((res) => {
-      if (res.data.resultCode === 0) {
+    profileAPI.updateStatus(status).then((data) => {
+      if (data.resultCode === 0) {
         dispatch(setStatus(status));
       }
     });

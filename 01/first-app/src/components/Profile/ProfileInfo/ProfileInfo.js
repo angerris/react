@@ -17,6 +17,7 @@ export default function ProfileInfo(props) {
           fullName={props.profile.fullName}
           status={props.status}
           aboutMe={props.profile.aboutMe}
+          updateStatus={props.updateStatus}
         />
       </div>
     </div>
