@@ -1,12 +1,28 @@
+import { Field, Form, Formik } from "formik";
 import x from "./MyPosts.module.css";
 export default function MyPostsForm(props) {
   return (
-    <div className={x.MyPosts}>
-      <div>my posts</div>
-      <div>new post</div>
-      <textarea onChange={props.onPostChange} value={props.newPostText} />
-      <button onClick={props.addPost}>add post</button>
-      <div className={x.posts}>{props.postElements}</div>
-    </div>
+    <Formik
+      initialValues={{
+        post: "",
+      }}
+      onSubmit={() => {
+        props.addPost();
+      }}
+    >
+      <Form>
+        <div>my posts</div>
+        <Field
+          value={props.newPostText}
+          component="textarea"
+          name="post"
+          type="text"
+          onChange={props.onPostChange}
+          placeholder="add new post..."
+        />
+        <button type="submit">add post!</button>
+        <div className={x.posts}>{props.postElements}</div>
+      </Form>
+    </Formik>
   );
 }
