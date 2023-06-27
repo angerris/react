@@ -5,12 +5,16 @@ import * as yup from "yup";
 
 const schema = yup
   .object({
-    login: yup.string().min(6).max(20),
-    password: yup.string().min(6).max(20),
+    email: yup
+      .string()
+      .email("Field should contain a valid e-mail")
+      .max(255)
+      .required("e-mail is required"),
+    password: yup.string().min(6).max(20).required("password is required"),
   })
   .required();
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   const {
     register,
     handleSubmit,
@@ -18,20 +22,20 @@ export default function LoginForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => props.onSubmit(data);
   return (
     <div>
       <h1>log in</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="login">login</label>
-          <input {...register("login")} />
-          <p>{errors.login?.message}</p>
+          <label htmlFor="email">email</label>
+          <input type="email" {...register("email")} />
+          <p>{errors.email?.message}</p>
         </div>
 
         <div>
           <label htmlFor="password">password</label>
-          <input {...register("password")} />
+          <input type="password" {...register("password")} />
           <p>{errors.password?.message}</p>
         </div>
         <button type="submit">Submit</button>

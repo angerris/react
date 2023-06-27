@@ -6,7 +6,13 @@ export default function Header(props) {
     <header className={x.header}>
       <img src={mainLogo} alt="" width={40} className={x.logo} />
       <div className={x.login}>
-        {props.isAuth ? props.login : <NavLink to={"./login"}>login</NavLink>}
+        {props.isAuth ? (
+          <div>
+            {props.login} <button onClick={props.logoutThunk}>logout</button>
+          </div>
+        ) : (
+          <NavLink to={"./login"}>login</NavLink>
+        )}
       </div>
     </header>
   );

@@ -58,4 +58,19 @@ export const authAPI = {
         return res.data;
       });
   },
+  login(email, password) {
+    return instance
+      .post(`auth/login`, {
+        email,
+        password,
+      })
+      .then((res) => {
+        return res.data;
+      });
+  },
+  logout() {
+    return instance.delete(`auth/login`).then((res) => {
+      return res.data;
+    });
+  },
 };
