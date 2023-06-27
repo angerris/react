@@ -1,12 +1,9 @@
-import { LoginForm } from "./LoginForm";
+import LoginForm from "./LoginForm";
 
-export default function Login(props) {
-  const onSubmit = (formData) => {
-    console.log(formData);
-  };
+export default function Login() {
   return (
     <div>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm />
     </div>
   );
 }
