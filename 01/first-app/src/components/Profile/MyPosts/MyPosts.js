@@ -1,4 +1,4 @@
-import x from "./MyPosts.module.css";
+import MyPostsForm from "./MyPostsForm";
 
 export default function MyPosts(props) {
   let newPostText = props.newPostText;
@@ -11,12 +11,11 @@ export default function MyPosts(props) {
     props.updatePostText(text);
   };
   return (
-    <div className={x.MyPosts}>
-      <div>my posts</div>
-      <div>new post</div>
-      <textarea onChange={onPostChange} value={newPostText} />
-      <button onClick={addPost}>add post</button>
-      <div className={x.posts}>{props.postElements}</div>
-    </div>
+    <MyPostsForm
+      onPostChange={onPostChange}
+      addPost={addPost}
+      newPostText={newPostText}
+      {...props}
+    />
   );
 }

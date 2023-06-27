@@ -7,10 +7,7 @@ const SET_STATUS = "SET-STATUS";
 let initialState = {
   profile: {},
   newPostText: "",
-  postsData: [
-    { id: 1, message: "hi", likeCount: 0 },
-    { id: 2, message: "wassup", likeCount: 2 },
-  ],
+  postsData: [],
   status: "",
 };
 

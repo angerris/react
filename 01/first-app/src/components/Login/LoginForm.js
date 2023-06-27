@@ -27,14 +27,18 @@ export const LoginForm = (props) => (
       {({ errors, touched }) => (
         <Form>
           <div>
-            <Field name="login" />
+            <Field name="login" type="text" placeholder="login" />
             {touched.login && errors.login && <div>{errors.login}</div>}
           </div>
           <div>
-            <Field name="password" type="password" />
+            <Field name="password" type="password" placeholder="password" />
             {touched.password && errors.password && (
               <div>{errors.password}</div>
             )}
+          </div>
+          <div>
+            <Field name="rememberMe" type="checkbox" />
+            remember me
           </div>
           <button type="submit">Submit</button>
         </Form>
