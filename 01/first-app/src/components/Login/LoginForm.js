@@ -17,28 +17,61 @@ const schema = yup
 export default function LoginForm(props) {
   const {
     register,
+    formState: { errors, isValid },
     handleSubmit,
-    formState: { errors },
+    clearErrors,
+    setError,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => props.onSubmit(data);
+  const onSubmit = (data) => {
+    props.loginThunk(data.email, data.password, setError);
+    reset(
+      {
+        email: "",
+        password: "",
+      },
+      { keepErrors: true }
+    );
+  };
   return (
     <div>
       <h1>log in</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="email">email</label>
-          <input type="email" {...register("email")} />
-          <p>{errors.email?.message}</p>
+          <input
+            type="email"
+            {...register("email")}
+            onFocus={() => clearErrors(["email", "server"])}
+          />
+        </div>
+        <div>
+          {errors.email && <span>{(errors.email?.message, "Error!")}</span>}
         </div>
 
         <div>
           <label htmlFor="password">password</label>
-          <input type="password" {...register("password")} />
-          <p>{errors.password?.message}</p>
+          <input
+            type="password"
+            {...register("password")}
+            onFocus={() => clearErrors(["password", "server"])}
+          />
         </div>
-        <button type="submit">Submit</button>
+        <div>
+          {errors.password && (
+            <span>{(errors.password.message, "Error!")}</span>
+          )}
+        </div>
+        <button type="submit" disabled={!isValid}>
+          Submit
+        </button>
+        {errors.server && (
+          <div>
+            <span>{errors.server.message}</span>
+          </div>
+        )}
       </form>
     </div>
   );

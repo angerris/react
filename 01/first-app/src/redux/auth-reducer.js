@@ -45,11 +45,16 @@ export let getProfileThunk = () => {
   };
 };
 
-export let loginThunk = (email, password) => {
+export let loginThunk = (email, password, setError) => {
   return (dispatch) => {
     authAPI.login(email, password).then((data) => {
       if (data.resultCode === 0) {
         dispatch(setAuthUserData());
+      } else {
+        setError("server", {
+          type: "custom",
+          message: "invalid e-mail or password",
+        });
       }
     });
   };

@@ -4,15 +4,12 @@ import { Navigate } from "react-router-dom";
 import { loginThunk } from "../../redux/auth-reducer";
 
 const LoginInner = (props) => {
-  const onSubmit = (data) => {
-    props.loginThunk(data.email, data.password);
-  };
   if (props.isAuth) {
     return <Navigate to={"/profile"} />;
   }
   return (
     <div>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm loginThunk={props.loginThunk} />
     </div>
   );
 };
