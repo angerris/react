@@ -34,15 +34,13 @@ export let resetUserData = (email, login) => ({
   data: { email, login },
 });
 //thunk
-export let getProfileThunk = () => {
-  return (dispatch) => {
-    authAPI.me().then((data) => {
-      if (data.resultCode === 0) {
-        let { email, login } = data.data;
-        dispatch(setAuthUserData(email, login));
-      }
-    });
-  };
+export let getProfileThunk = () => (dispatch) => {
+  return authAPI.me().then((data) => {
+    if (data.resultCode === 0) {
+      let { email, login } = data.data;
+      dispatch(setAuthUserData(email, login));
+    }
+  });
 };
 
 export let loginThunk = (email, password, setError) => {
