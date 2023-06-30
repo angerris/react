@@ -1,13 +1,16 @@
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
+const DELETE_POST = "DELETE-POST";
+
 const SET_PROFILE = "SET-PROFILE";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 const SET_STATUS = "SET-STATUS";
 let initialState = {
   profile: {},
   newPostText: "",
-  postsData: [],
+  postsData: [{ id: 1, message: "heyy", likeCount: 2 }],
+
   status: "",
 };
 
@@ -31,12 +34,18 @@ const profileReducer = (state = initialState, action) => {
     return { ...state, profile: action.profile };
   } else if (action.type === SET_STATUS) {
     return { ...state, status: action.status };
+  } else if (action.type === DELETE_POST) {
+    return {
+      ...state,
+      postsData: [...state.postsData.filter((p) => p.id !== action.postId)],
+    };
   }
   return state;
 };
 export let setProfile = (profile) => ({ type: SET_PROFILE, profile });
 export let setStatus = (status) => ({ type: SET_STATUS, status });
 export let addPostActionCreator = () => ({ type: ADD_POST });
+export let deletePost = (postId) => ({ type: DELETE_POST, postId });
 export let onPostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,
   newText: text,
