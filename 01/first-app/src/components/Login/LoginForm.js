@@ -14,7 +14,7 @@ const schema = yup
   })
   .required();
 
-export default function LoginForm(props) {
+export default function LoginForm({ loginThunk }) {
   const {
     register,
     formState: { errors, isValid },
@@ -26,7 +26,7 @@ export default function LoginForm(props) {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data) => {
-    props.loginThunk(data.email, data.password, setError);
+    loginThunk(data.email, data.password, setError);
     reset(
       {
         email: "",

@@ -3,13 +3,13 @@ import LoginForm from "./LoginForm";
 import { Navigate } from "react-router-dom";
 import { loginThunk } from "../../redux/auth-reducer";
 
-const LoginInner = (props) => {
-  if (props.isAuth) {
+const LoginInner = ({ isAuth, loginThunk }) => {
+  if (isAuth) {
     return <Navigate to={"/profile"} />;
   }
   return (
     <div>
-      <LoginForm loginThunk={props.loginThunk} />
+      <LoginForm loginThunk={loginThunk} />
     </div>
   );
 };

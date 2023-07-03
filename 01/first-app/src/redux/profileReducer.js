@@ -51,30 +51,21 @@ export let onPostChangeActionCreator = (text) => ({
   newText: text,
 });
 //thunk
-export let getProfileThunk = (profileId) => {
-  return (dispatch) => {
-    if (!profileId) {
-      profileId = 2;
-    }
-    profileAPI.getProfile(profileId).then((data) => {
-      dispatch(setProfile(data));
-    });
-  };
+export let getProfileThunk = (profileId) => async (dispatch) => {
+  const data = await profileAPI.getProfile(profileId);
+  dispatch(setProfile(data));
 };
-export let getStatusThunk = (userID) => {
-  return (dispatch) => {
-    profileAPI.getStatus(userID).then((data) => {
-      dispatch(setStatus(data));
-    });
-  };
+
+export let getStatusThunk = (userID) => async (dispatch) => {
+  const data = await profileAPI.getStatus(userID);
+  dispatch(setStatus(data));
 };
-export let updateStatusThunk = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
-    });
-  };
+
+export let updateStatusThunk = (status) => async (dispatch) => {
+  const data = await profileAPI.updateStatus(status);
+  if (data.resultCode === 0) {
+    dispatch(setStatus(status));
+  }
 };
+
 export default profileReducer;

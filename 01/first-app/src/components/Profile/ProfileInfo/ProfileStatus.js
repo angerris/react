@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-export default function ProfileStatus(props) {
-  const [title, setTitle] = useState(props.status);
+export default function ProfileStatus({
+  fullName,
+  status,
+  aboutMe,
+  updateStatus,
+}) {
+  const [title, setTitle] = useState(status);
   const [editMode, setEditMode] = useState(false);
 
   const onEditMode = () => setEditMode(true);
 
   const offEditMode = () => {
-    props.updateStatus(title);
+    updateStatus(title);
     setEditMode(false);
   };
 
   useEffect(() => {
-    setTitle(props.status);
-  }, [props.status]);
+    setTitle(status);
+  }, [status]);
 
   const onChangeSetTitle = (e) => {
     setTitle(e.currentTarget.value);
@@ -21,7 +26,7 @@ export default function ProfileStatus(props) {
 
   return (
     <div>
-      <p>{props.fullName}</p>
+      <p>{fullName}</p>
       {editMode ? (
         <input
           autoFocus={true}
@@ -32,7 +37,7 @@ export default function ProfileStatus(props) {
       ) : (
         <span onDoubleClick={onEditMode}>{title || "no status"}</span>
       )}
-      <p>{props.aboutMe}</p>
+      <p>{aboutMe}</p>
     </div>
   );
 }

@@ -93,38 +93,31 @@ export let toggleFollowingProgress = (isFetching, userID) => ({
   userID,
 });
 //thunk
-export let getUsersThunk = (page, pageSize) => {
-  return (dispatch) => {
-    dispatch(setToggleFetching(true));
-    usersAPI.getUsers(page, pageSize).then((data) => {
-      dispatch(setCurrentPage(page));
-      dispatch(setToggleFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
+export let getUsersThunk = (page, pageSize) => async (dispatch) => {
+  dispatch(setToggleFetching(true));
+  const data = await usersAPI.getUsers(page, pageSize);
+  dispatch(setCurrentPage(page));
+  dispatch(setToggleFetching(false));
+  dispatch(setUsers(data.items));
+  dispatch(setTotalUsersCount(data.totalCount));
 };
-export let followThunk = (userID) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userID));
-    usersAPI.followUsers(userID).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(follow(userID));
-      }
-      dispatch(toggleFollowingProgress(false, userID));
-    });
-  };
+
+export let followThunk = (userID) => async (dispatch) => {
+  dispatch(toggleFollowingProgress(true, userID));
+  const data = await usersAPI.followUsers(userID);
+  if (data.resultCode === 0) {
+    dispatch(follow(userID));
+  }
+  dispatch(toggleFollowingProgress(false, userID));
 };
-export let unfollowThunk = (userID) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userID));
-    usersAPI.unfollowUsers(userID).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(unfollow(userID));
-      }
-      dispatch(toggleFollowingProgress(false, userID));
-    });
-  };
+
+export let unfollowThunk = (userID) => async (dispatch) => {
+  dispatch(toggleFollowingProgress(true, userID));
+  const data = await usersAPI.unfollowUsers(userID);
+  if (data.resultCode === 0) {
+    dispatch(unfollow(userID));
+  }
+  dispatch(toggleFollowingProgress(false, userID));
 };
 
 export default usersReducer;

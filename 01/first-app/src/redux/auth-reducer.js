@@ -1,7 +1,7 @@
 import { authAPI } from "../api/api";
 
-const SET_USER_DATA = "SET-USER-DATA";
-const RESET_USER_DATA = "RESET-USER-DATA";
+const SET_USER_DATA = "auth/SET-USER-DATA";
+const RESET_USER_DATA = "auth/RESET-USER-DATA";
 let initialState = {
   email: null,
   login: null,
@@ -34,36 +34,29 @@ export let resetUserData = (email, login) => ({
   data: { email, login },
 });
 //thunk
-export let getProfileThunk = () => (dispatch) => {
-  return authAPI.me().then((data) => {
-    if (data.resultCode === 0) {
-      let { email, login } = data.data;
-      dispatch(setAuthUserData(email, login));
-    }
-  });
+export let getProfileThunk = () => async (dispatch) => {
+  const data = await authAPI.me();
+  if (data.resultCode === 0) {
+    let { email, login } = data.data;
+    dispatch(setAuthUserData(email, login));
+  }
 };
 
-export let loginThunk = (email, password, setError) => {
-  return (dispatch) => {
-    authAPI.login(email, password).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthUserData());
-      } else {
-        setError("server", {
-          type: "custom",
-          message: "invalid e-mail or password",
-        });
-      }
+export let loginThunk = (email, password, setError) => async (dispatch) => {
+  const data = await authAPI.login(email, password);
+  if (data.resultCode === 0) {
+    dispatch(setAuthUserData());
+  } else {
+    setError("server", {
+      type: "custom",
+      message: "invalid e-mail or password",
     });
-  };
+  }
 };
-export let logoutThunk = () => {
-  return (dispatch) => {
-    authAPI.logout().then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(resetUserData(null, null));
-      }
-    });
-  };
+export let logoutThunk = () => async (dispatch) => {
+  const data = await authAPI.logout();
+  if (data.resultCode === 0) {
+    dispatch(resetUserData(null, null));
+  }
 };
 export default authReducer;

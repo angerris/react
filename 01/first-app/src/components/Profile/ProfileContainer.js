@@ -14,7 +14,6 @@ import { compose } from "redux";
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let profileId = this.props.router.params.profileId;
-    debugger;
     if (!profileId) {
       profileId = 29349;
     }
