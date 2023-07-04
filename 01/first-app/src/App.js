@@ -11,9 +11,10 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import { connect } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { initAppThunk } from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/preloader";
+import store from "./redux/reduxStore";
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends React.Component {
   render() {
     if (!this.props.initialized) return <Preloader />;
     return (
-      <BrowserRouter>
+      <>
         <HeaderContainer />
         <div className="wrapper">
           <NavbarContainer />
@@ -42,7 +43,7 @@ class App extends React.Component {
             </Routes>
           </div>
         </div>
-      </BrowserRouter>
+      </>
     );
   }
 }
@@ -50,4 +51,14 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
-export default connect(mapStateToProps, { initAppThunk })(App);
+const AppContainer = connect(mapStateToProps, { initAppThunk })(App);
+const ReactApp = (props) => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+export default ReactApp;
