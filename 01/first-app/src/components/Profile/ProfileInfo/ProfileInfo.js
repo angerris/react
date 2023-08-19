@@ -3,6 +3,7 @@ import x from "./ProfileInfo.module.css";
 import ProfileStatus from "./ProfileStatus";
 
 export default function ProfileInfo(props) {
+  const profilePic = props.profile.photos.small;
   return (
     <div className={x.description}>
       <img
@@ -10,9 +11,12 @@ export default function ProfileInfo(props) {
         alt=""
         className={x.img}
       />
-
       <div>
-        <img src={pfp} alt="" srcset="" width={100} />
+        {!profilePic ? (
+          <img src={pfp} alt="" srcset="" width={100} />
+        ) : (
+          <img src={profilePic} alt="" />
+        )}
         <ProfileStatus
           fullName={props.profile.fullName}
           status={props.status}

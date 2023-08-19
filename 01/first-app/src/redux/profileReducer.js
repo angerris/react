@@ -7,7 +7,13 @@ const SET_PROFILE = "SET-PROFILE";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 const SET_STATUS = "SET-STATUS";
 let initialState = {
-  profile: {},
+  profile: {
+    userId: "",
+    photos: {
+      large: "",
+      small: "",
+    },
+  },
   newPostText: "",
   postsData: [{ id: 1, message: "heyy", likeCount: 2 }],
 
