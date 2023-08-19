@@ -1,4 +1,3 @@
-import x from "./Dialogs.module.css";
 import DialogsForm from "./DialogsForm";
 export default function Dialogs(props) {
   let sendMessage = () => {
@@ -10,15 +9,16 @@ export default function Dialogs(props) {
   };
 
   return (
-    <div className={x.wrapper}>
-      <div className={x.dialogWrapper}>{props.dialogElement}</div>
-      <div className={x.msgWrapper}>
+    <div className={"dialogMainWrapper"}>
+      <div className={"dialogUsersWrapper"}>{props.dialogElement}</div>
+      <div className={"messageWrapper"}>
         {props.messageElement}
-        <div className={x.text}>
+        <div className="sendMessageWrapper">
           <DialogsForm
             {...props}
             onMessageChange={onMessageChange}
             sendMessage={sendMessage}
+            className="sendMessageItem"
           />
         </div>
       </div>

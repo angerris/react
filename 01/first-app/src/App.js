@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import "./App.css";
+import "./styles/styles.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Feed from "./components/Feed/Feed";
 import Music from "./components/Music/Music";
@@ -29,9 +29,10 @@ class App extends React.Component {
         <HeaderContainer />
         <div className="wrapper">
           <NavbarContainer />
-          <div className="routes">
+          <div className="container">
             <Suspense fallback={<Preloader />}>
               <Routes>
+                <Route path="/" element={<Login />} />
                 <Route
                   path="/profile/:profileId?"
                   element={<ProfileContainer />}
@@ -58,7 +59,7 @@ const mapStateToProps = (state) => ({
 const AppContainer = connect(mapStateToProps, { initAppThunk })(App);
 const ReactApp = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Provider store={store}>
         <AppContainer />
       </Provider>

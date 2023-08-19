@@ -1,27 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&family=Source+Code+Pro&display=swap");
-body {
-  background-color: #c1d5a4;
-  font-family: "Source Code Pro", monospace;
-}
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-.routes {
-  flex-grow: 1;
-}
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-}
 
 *,
-*:before,
-*:after {
-  box-sizing: inherit;
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
 body,
 h1,
 h2,

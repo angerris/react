@@ -3,7 +3,7 @@ import x from "./Navbar.module.css";
 
 export default function Navbar(props) {
   return (
-    <nav className={x.nav}>
+    <nav className={`${"navbar"}`}>
       <ul>
         <li>
           <NavLink to="/profile">profile</NavLink>
@@ -21,7 +21,7 @@ export default function Navbar(props) {
           <NavLink to="/users">find users</NavLink>
         </li>
         <li>
-          <NavLink to="/settings">settings</NavLink>
+          <NavLink to="/settings"> settings</NavLink>
         </li>
       </ul>
       <div>
