@@ -3,6 +3,13 @@ import x from "./ProfileInfo.module.css";
 import ProfileStatus from "./ProfileStatus";
 
 export default function ProfileInfo(props) {
+  const onPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      props.savePhotoThunk(e.target.files[0]);
+    }
+  };
+  debugger;
+
   const profilePic = props.profile.photos.small;
   return (
     <div className={x.description}>
@@ -17,6 +24,16 @@ export default function ProfileInfo(props) {
         ) : (
           <img src={profilePic} alt="" />
         )}
+        <div>
+          {props.isOwner ? (
+            <input
+              type="file"
+              onChange={(e) => {
+                onPhotoSelected(e);
+              }}
+            />
+          ) : null}
+        </div>
         <ProfileStatus
           fullName={props.profile.fullName}
           status={props.status}

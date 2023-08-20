@@ -2,10 +2,11 @@ import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const DELETE_POST = "DELETE-POST";
-
 const SET_PROFILE = "SET-PROFILE";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 const SET_STATUS = "SET-STATUS";
+const SET_PHOTO = "SET-PHOTO";
+
 let initialState = {
   profile: {
     userId: "",
@@ -43,13 +44,17 @@ const profileReducer = (state = initialState, action) => {
   } else if (action.type === DELETE_POST) {
     return {
       ...state,
+
       postsData: [...state.postsData.filter((p) => p.id !== action.postId)],
     };
+  } else if (action.type === SET_PHOTO) {
+    return { ...state, profile: { ...state.profile, photos: action.file } };
   }
   return state;
 };
 export let setProfile = (profile) => ({ type: SET_PROFILE, profile });
 export let setStatus = (status) => ({ type: SET_STATUS, status });
+export let setPhoto = (file) => ({ type: SET_PHOTO, file });
 export let addPostActionCreator = () => ({ type: ADD_POST });
 export let deletePost = (postId) => ({ type: DELETE_POST, postId });
 export let onPostChangeActionCreator = (text) => ({
@@ -71,6 +76,12 @@ export let updateStatusThunk = (status) => async (dispatch) => {
   const data = await profileAPI.updateStatus(status);
   if (data.resultCode === 0) {
     dispatch(setStatus(status));
+  }
+};
+export let savePhotoThunk = (file) => async (dispatch) => {
+  const data = await profileAPI.savePhoto(file);
+  if (data.resultCode === 0) {
+    dispatch(setPhoto(data.data.photos));
   }
 };
 

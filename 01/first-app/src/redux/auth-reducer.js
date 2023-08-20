@@ -2,7 +2,9 @@ import { authAPI } from "../api/api";
 
 const SET_USER_DATA = "auth/SET-USER-DATA";
 const RESET_USER_DATA = "auth/RESET-USER-DATA";
+
 let initialState = {
+  id: null,
   email: null,
   login: null,
   isAuth: false,
@@ -25,25 +27,25 @@ const authReducer = (state = initialState, action) => {
   return state;
 };
 //action creators
-export let setAuthUserData = (email, login) => ({
+export let setAuthUserData = (id, email, login) => ({
   type: SET_USER_DATA,
-  data: { email, login },
+  data: { id, email, login },
 });
-export let resetUserData = (email, login) => ({
+export let resetUserData = (id, email, login) => ({
   type: RESET_USER_DATA,
-  data: { email, login },
+  data: { id, email, login },
 });
 //thunk
 export let getProfileThunk = () => async (dispatch) => {
   const data = await authAPI.me();
   if (data.resultCode === 0) {
-    let { email, login } = data.data;
-    dispatch(setAuthUserData(email, login));
+    let { id, email, login } = data.data;
+    dispatch(setAuthUserData(id, email, login));
   }
 };
 
-export let loginThunk = (email, password, setError) => async (dispatch) => {
-  const data = await authAPI.login(email, password);
+export let loginThunk = (id, email, password, setError) => async (dispatch) => {
+  const data = await authAPI.login(id, email, password);
   if (data.resultCode === 0) {
     dispatch(setAuthUserData());
   } else {
@@ -56,7 +58,7 @@ export let loginThunk = (email, password, setError) => async (dispatch) => {
 export let logoutThunk = () => async (dispatch) => {
   const data = await authAPI.logout();
   if (data.resultCode === 0) {
-    dispatch(resetUserData(null, null));
+    dispatch(resetUserData(null, null, null));
   }
 };
 export default authReducer;
