@@ -11,8 +11,15 @@ import { connect } from "react-redux";
 import withRouter from "../common/withRouter";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import Preloader from "../common/preloader/preloader";
 
 class ProfileContainer extends React.Component {
+  constructor() {
+    super();
+    this.profileState = {
+      loading: true,
+    };
+  }
   refreshProfile = () => {
     let profileId = this.props.router.params.profileId;
     if (!profileId) {
@@ -22,6 +29,7 @@ class ProfileContainer extends React.Component {
     this.props.getStatusThunk(profileId);
   };
   componentDidMount() {
+    this.profileState = { loading: false };
     this.refreshProfile();
   }
   componentDidUpdate(prevProps) {
@@ -32,7 +40,9 @@ class ProfileContainer extends React.Component {
     }
   }
   render() {
-    return (
+    return this.profileState.loading ? (
+      <Preloader />
+    ) : (
       <Profile
         savePhoto={this.savePhotoThunk}
         isOwner={!this.props.router.params.profileId}

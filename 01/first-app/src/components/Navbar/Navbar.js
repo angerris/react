@@ -1,35 +1,51 @@
 import { NavLink } from "react-router-dom";
-import x from "./Navbar.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGear,
+  faMessage,
+  faMusic,
+  faNewspaper,
+  faSearch,
+  faUserCircle,
+  faUserFriends,
+} from "@fortawesome/free-solid-svg-icons";
 
-export default function Navbar(props) {
+export default function Navbar() {
   return (
     <nav className={`${"navbar"}`}>
-      <ul>
-        <li>
-          <NavLink to="/profile">profile</NavLink>
-        </li>
-        <li>
-          <NavLink to="/dialogs">messages</NavLink>
-        </li>
-        <li>
-          <NavLink to="/feed">news</NavLink>
-        </li>
-        <li>
-          <NavLink to="/music">music</NavLink>
-        </li>
-        <li>
-          <NavLink to="/users">find users</NavLink>
-        </li>
-        <li>
-          <NavLink to="/settings"> settings</NavLink>
-        </li>
-      </ul>
-      <div>
-        <NavLink to="/friends">
-          <br />
-          friends:
+      <div className="navbar-container">
+        <NavLink activeClassName="active" className="navbar-item" to="/profile">
+          <FontAwesomeIcon icon={faUserCircle} />
+          <p>profile</p>
         </NavLink>
-        <div className={x.friend}>{props.friend}</div>
+        <NavLink activeClassName="active" className="navbar-item" to="/feed">
+          <FontAwesomeIcon icon={faNewspaper} />
+          news
+        </NavLink>
+        <NavLink activeClassName="active" className="navbar-item" to="/dialogs">
+          <FontAwesomeIcon icon={faMessage} />
+          messages
+        </NavLink>
+        <NavLink activeClassName="active" className="navbar-item" to="/music">
+          <FontAwesomeIcon icon={faMusic} />
+          music
+        </NavLink>
+        <NavLink activeClassName="active" className="navbar-item" to="/users">
+          <FontAwesomeIcon icon={faSearch} />
+          find users
+        </NavLink>
+        <NavLink activeClassName="active" className="navbar-item" to="/friends">
+          <FontAwesomeIcon icon={faUserFriends} />
+          friends
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          className="navbar-item"
+          to="/settings"
+        >
+          <FontAwesomeIcon icon={faGear} />
+          settings
+        </NavLink>
       </div>
     </nav>
   );

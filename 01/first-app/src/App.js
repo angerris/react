@@ -27,26 +27,24 @@ class App extends React.Component {
     return (
       <>
         <HeaderContainer />
-        <div className="wrapper">
-          <NavbarContainer />
-          <div className="container">
-            <Suspense fallback={<Preloader />}>
-              <Routes>
-                <Route path="/" element={<Login />} />
-                <Route
-                  path="/profile/:profileId?"
-                  element={<ProfileContainer />}
-                />
-                <Route path="/dialogs" element={<DialogsContainer />} />
-                <Route path="/feed" element={<Feed />} />
-                <Route path="/music" element={<Music />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/friends" element={<FriendsContainer />} />
-                <Route path="/users" element={<UsersContainer />} />
-                <Route path="/login" element={<Login />} />
-              </Routes>
-            </Suspense>
-          </div>
+        <NavbarContainer />
+        <div className="container">
+          <Suspense fallback={<Preloader />}>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route
+                path="/profile/:profileId?"
+                element={<ProfileContainer />}
+              />
+              <Route path="/dialogs" element={<DialogsContainer />} />
+              <Route path="/feed" element={<Feed />} />
+              <Route path="/music" element={<Music />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/friends" element={<FriendsContainer />} />
+              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </Suspense>
         </div>
       </>
     );

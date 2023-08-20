@@ -9,11 +9,7 @@
   margin: 0;
   padding: 0;
 }
-html,
-body {
-  overflow-x: hidden;
-  height: 100%;
-}
+
 body,
 h1,
 h2,
@@ -38,13 +34,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-a,
-a:visited {
+a {
   text-decoration: none;
-  color: white;
-}
-
-a:hover,
-a:active {
-  color: #f0f2b6;
 }

@@ -8,7 +8,6 @@ export default function ProfileInfo(props) {
       props.savePhotoThunk(e.target.files[0]);
     }
   };
-  debugger;
 
   const profilePic = props.profile.photos.small;
   return (

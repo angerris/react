@@ -36,43 +36,32 @@ export default function LoginForm({ loginThunk }) {
     );
   };
   return (
-    <div>
-      <h1>log in</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="loginFormContainer">
+      <h2>Log in</h2>
+      <input
+        className="loginInput"
+        placeholder="Email"
+        type="email"
+        {...register("email")}
+        onFocus={() => clearErrors(["email", "server"])}
+      />
+      {errors.email && <span>{(errors.email?.message, "Error!")}</span>}
+      <input
+        className="loginInput"
+        placeholder="Password"
+        type="password"
+        {...register("password")}
+        onFocus={() => clearErrors(["password", "server"])}
+      />
+      {errors.password && <span>{(errors.password.message, "Error!")}</span>}
+      <button className="btn btn-primary" type="submit" disabled={!isValid}>
+        Log in
+      </button>
+      {errors.server && (
         <div>
-          <label htmlFor="email">email</label>
-          <input
-            type="email"
-            {...register("email")}
-            onFocus={() => clearErrors(["email", "server"])}
-          />
+          <span>{errors.server.message}</span>
         </div>
-        <div>
-          {errors.email && <span>{(errors.email?.message, "Error!")}</span>}
-        </div>
-
-        <div>
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            {...register("password")}
-            onFocus={() => clearErrors(["password", "server"])}
-          />
-        </div>
-        <div>
-          {errors.password && (
-            <span>{(errors.password.message, "Error!")}</span>
-          )}
-        </div>
-        <button type="submit" disabled={!isValid}>
-          Submit
-        </button>
-        {errors.server && (
-          <div>
-            <span>{errors.server.message}</span>
-          </div>
-        )}
-      </form>
-    </div>
+      )}
+    </form>
   );
 }

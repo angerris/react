@@ -1,18 +1,23 @@
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-
+import logo from "./../../assets/Logo.svg";
 export default function Header(props) {
   return (
-    <header className={`${"header"}`}>
-      <FontAwesomeIcon icon={faCoffee} className="headerLogo" />
-      <div className={"loginButton"}>
+    <header className="header">
+      <img src={logo} className="headerLogo" alt="header logo" />
+      <div className={"loginButton "}>
         {props.isAuth ? (
-          <div>
-            {props.login} <button onClick={props.logoutThunk}>logout</button>
+          <div className="logoutContainer">
+            {props.isAuth && props.login !== undefined
+              ? "@" + props.login
+              : null}
+            <button onClick={props.logoutThunk} className="btn btn-primary">
+              Log out
+            </button>
           </div>
         ) : (
-          <NavLink to={"./login"}>login</NavLink>
+          <NavLink to={"./login"}>
+            <button className="btn btn-primary">Log in</button>
+          </NavLink>
         )}
       </div>
     </header>

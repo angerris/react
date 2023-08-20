@@ -1,0 +1,9 @@
+.btn {
+  border-radius: 8px;
+  padding: 8px 32px;
+  border: none;
+}
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--light);
+}
