@@ -8,7 +8,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 .container {
-  padding: 100px 100px 0 300px;
+  padding: 100px 60px 30px 260px;
   height: 100%;
 }
 
@@ -20,7 +20,7 @@ body {
   width: 200px;
 }
 .navbar-container {
-  height: 80%;
+  height: 90%;
   padding: 110px 32px 110px;
   display: flex;
   align-items: flex-start;
@@ -72,7 +72,6 @@ body {
 .dialogMainWrapper {
   display: flex;
   flex-direction: row;
-  margin: -50px -100px;
 }
 .dialogUsersWrapper {
   flex-direction: column;
@@ -80,14 +79,13 @@ body {
   width: 250px;
   background-color: #5d7736;
   padding: 100px 20px;
-  height: 100vh;
+
   margin-top: -50px;
 }
 .messageWrapper {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 80vh;
   overflow-y: scroll;
   padding: 50px;
 }
@@ -125,6 +123,184 @@ body {
   margin: 10% auto;
 }
 
+/* //profile// */
+.profileTop {
+  position: relative;
+  width: 100%;
+  height: 250px;
+}
+.profileBg {
+  width: 100%;
+  border-radius: 16px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.pfpContainer {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  height: 160px;
+}
+.pfp {
+  border-radius: 120px;
+  border: 8px solid #fff;
+  object-fit: contain;
+  width: auto;
+  height: 100%;
+  position: relative;
+}
+.changePfp {
+  display: none;
+}
+.cam {
+  color: var(--primary);
+}
+.custom-file-upload {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  bottom: 5px;
+  border-radius: 50px;
+  cursor: pointer !important;
+
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+}
+.status {
+  position: absolute;
+  bottom: 24px;
+  left: 200px;
+  cursor: pointer;
+}
+.status-field {
+  padding: 8px 24px;
+  bottom: 17px;
+  font-size: 16px;
+  left: 174px;
+  cursor: text;
+}
+
+.fullName {
+  color: #fff;
+  position: absolute;
+  bottom: 74px;
+  left: 200px;
+  font-size: 32px;
+}
+.profileContent {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 24px;
+  padding-top: 24px;
+  justify-content: space-between;
+}
+
+.sideInfo {
+  width: 250px;
+  margin-top: -66px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.aboutMe {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: space-around;
+}
+/* //posts// */
+.myPostsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+.addPost {
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  background-color: #fff;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.myPosts {
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.postView {
+  border: 1px solid var(--primary);
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.postView:last-child {
+  margin-bottom: 0px;
+}
+.postUserData {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  font-weight: 600;
+}
+.postViewPfp {
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+}
+.likesData {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.addPostField {
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  border: 1px solid var(--primary);
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.addPostForm {
+  display: flex;
+  gap: 16px;
+}
 /* //coming soon// */
 .comingSoon {
   display: flex;

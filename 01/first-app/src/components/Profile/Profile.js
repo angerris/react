@@ -1,5 +1,6 @@
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import SideInfo from "./SideInfo/SideInfo";
 export default function Profile(props) {
   return (
     <div>
@@ -9,7 +10,10 @@ export default function Profile(props) {
         updateStatus={props.updateStatusThunk}
         savePhoto={props.savePhoto}
       />
-      <MyPostsContainer />
+      <div className="profileContent">
+        <SideInfo {...props} />
+        <MyPostsContainer />
+      </div>
     </div>
   );
 }

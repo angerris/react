@@ -1,8 +1,6 @@
-import MyPostsForm from "./MyPostsForm";
+import { Formik, Form } from "formik";
 
 export default function MyPosts(props) {
-  let newPostText = props.newPostText;
-
   let addPost = () => {
     props.addPost();
   };
@@ -11,11 +9,47 @@ export default function MyPosts(props) {
     props.updatePostText(text);
   };
   return (
-    <MyPostsForm
-      onPostChange={onPostChange}
-      addPost={addPost}
-      newPostText={newPostText}
-      {...props}
-    />
+    <>
+      <div className="myPostsContainer">
+        <PostInput addPost={addPost} onPostChange={onPostChange} {...props} />
+        <Post {...props} />
+      </div>
+    </>
+  );
+}
+export function PostInput(props) {
+  return (
+    <Formik
+      initialValues={{
+        post: "",
+      }}
+      onSubmit={() => {
+        props.addPost();
+      }}
+    >
+      <Form className="addPost">
+        <h3>Add post</h3>
+        <div className="addPostForm">
+          <input
+            placeholder="Write something..."
+            type="text"
+            value={props.newPostText}
+            onChange={props.onPostChange}
+            className="addPostField"
+          />
+          <button type="submit" className="btn btn-primary">
+            Publish
+          </button>
+        </div>
+      </Form>
+    </Formik>
+  );
+}
+export function Post(props) {
+  return (
+    <div className="myPosts">
+      <h3>My posts</h3>
+      <div>{props.post}</div>
+    </div>
   );
 }

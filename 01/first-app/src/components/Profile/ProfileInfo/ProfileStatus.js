@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function ProfileStatus({
-  fullName,
-  status,
-  aboutMe,
-  updateStatus,
-}) {
+export default function ProfileStatus({ status, updateStatus }) {
   const [title, setTitle] = useState(status);
   const [editMode, setEditMode] = useState(false);
 
@@ -25,19 +20,21 @@ export default function ProfileStatus({
   };
 
   return (
-    <div>
-      <p>{fullName}</p>
+    <div className="statusContainer">
       {editMode ? (
         <input
+          className="status status-field"
           autoFocus={true}
           onBlur={offEditMode}
           onChange={onChangeSetTitle}
           value={title}
         />
       ) : (
-        <span onDoubleClick={onEditMode}>{title || "no status"}</span>
+        <span className="status" onDoubleClick={onEditMode}>
+          {title || "no status"}{" "}
+          {/* <FontAwesomeIcon icon={faEdit} onClick={onEditMode} /> */}
+        </span>
       )}
-      <p>{aboutMe}</p>
     </div>
   );
 }

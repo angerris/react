@@ -1,6 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import pfp from "./../../../assets/profpic.avif";
+import bg from "./../../../assets/Rectangle 1.png";
+
 import x from "./ProfileInfo.module.css";
 import ProfileStatus from "./ProfileStatus";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProfileInfo(props) {
   const onPhotoSelected = (e) => {
@@ -12,33 +16,51 @@ export default function ProfileInfo(props) {
   const profilePic = props.profile.photos.small;
   return (
     <div className={x.description}>
-      <img
-        src="https://w0.peakpx.com/wallpaper/223/577/HD-wallpaper-secluded-in-the-woods-hills-forest-house-grass-trees-mist-green-morning-landscape.jpg"
-        alt=""
-        className={x.img}
-      />
-      <div>
-        {!profilePic ? (
-          <img src={pfp} alt="" srcset="" width={100} />
-        ) : (
-          <img src={profilePic} alt="" />
-        )}
+      <div className="profileTop">
+        <img src={bg} alt="" className="profileBg" />
         <div>
-          {props.isOwner ? (
-            <input
-              type="file"
-              onChange={(e) => {
-                onPhotoSelected(e);
-              }}
-            />
-          ) : null}
+          {!profilePic ? (
+            <div className="pfpContainer">
+              <img src={pfp} alt="" className="pfp" />
+              {props.isOwner ? (
+                <label class="custom-file-upload">
+                  <FontAwesomeIcon icon={faCamera} className="cam" />
+
+                  <input
+                    className="changePfp"
+                    type="file"
+                    size={30}
+                    onChange={(e) => {
+                      onPhotoSelected(e);
+                    }}
+                  />
+                </label>
+              ) : null}
+            </div>
+          ) : (
+            <div className="pfpContainer">
+              <img src={profilePic} alt="" className="pfp" />
+              {props.isOwner ? (
+                <label class="custom-file-upload">
+                  <FontAwesomeIcon icon={faCamera} className="cam" />
+                  <input
+                    className="changePfp"
+                    type="file"
+                    size={30}
+                    onChange={(e) => {
+                      onPhotoSelected(e);
+                    }}
+                  />
+                </label>
+              ) : null}
+            </div>
+          )}
         </div>
         <ProfileStatus
-          fullName={props.profile.fullName}
           status={props.status}
-          aboutMe={props.profile.aboutMe}
           updateStatus={props.updateStatus}
         />
+        <div className="fullName">{"@" + props.profile.fullName}</div>
       </div>
     </div>
   );

@@ -16,7 +16,15 @@ let initialState = {
     },
   },
   newPostText: "",
-  postsData: [{ id: 1, message: "heyy", likeCount: 2 }],
+  postsData: [
+    {
+      id: 1,
+      message:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia.",
+      likeCount: 57,
+    },
+    { id: 1, message: "Lorem ipsum dolor sit amet.", likeCount: 82 },
+  ],
 
   status: "",
 };
