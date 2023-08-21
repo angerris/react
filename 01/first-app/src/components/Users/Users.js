@@ -1,16 +1,17 @@
-import Pagination from "./Pagination";
-import User from "./User";
+import ComingSoon from "../common/comingSoon";
+// import Pagination from "./Pagination";
+// import User from "./User";
 
 export default function Users({
   users,
   followThunk,
   followingInProgress,
   unfollowThunk,
-  ...props
+  // ...props
 }) {
   return (
     <div>
-      <Pagination {...props} />
+      {/* <Pagination {...props} />
       {users.map((u) => (
         <User
           user={u}
@@ -19,7 +20,8 @@ export default function Users({
           followThunk={followThunk}
           key={u.id}
         />
-      ))}
+      ))} */}
+      <ComingSoon />
     </div>
   );
 }
